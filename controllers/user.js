@@ -31,7 +31,7 @@ const usuariosGet = async(req= request, res = response) => {
 
 const usuariosPost = async (req, res = response) => {
 
-    const {nombre, correo, password, rol} = req.body;
+    const {nombre, correo, password, rol = "USER_ROLE"} = req.body;
 
     const usuario = new Usuario({nombre, correo, password, rol});
 
@@ -69,12 +69,16 @@ const usuariosDelete = async(req, res = response) => {
     
     const { id } = req.params;
 
+//    const uid = req.uid;
+
     // Fisicamente lo borramos
     // const usuario = await Usuario.findByIdAndDelete(id);
 
     // Marcando el registro como borrado (estado = false)
     const usuario = await Usuario.findByIdAndUpdate(id, {estado : false});
+ //   const usuarioAutenticado = req.usuario;
 
+//    res.json({usuario, usuarioAutenticado});
     res.json(usuario);
 }
 

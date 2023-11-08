@@ -22,7 +22,8 @@ const UsuarioSchema = Schema({
     rol : {
         type : String,
         requires : true,
-        enum : ['ADMIN _ROLE', 'USER_ROLE']
+        enum : ['ADMIN_ROLE', 'USER_ROLE'],
+        default : 'USER_ROLE'
     },
     estado : {
         type : Boolean,
@@ -35,7 +36,10 @@ const UsuarioSchema = Schema({
 });
 
 UsuarioSchema.methods.toJSON = function() { // OJO funcion normal no =>
-    const {__v, password, ...usuario} = this.toObject();
+    const {__v, password, _id, ...usuario} = this.toObject();
+    
+    // convierto el _id como uid en el usuario
+    usuario.uid = _id;
     return usuario;
 }
 
