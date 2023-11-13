@@ -2,7 +2,7 @@ const {response} = require('express');
 const bcryptjs = require('bcryptjs');
 
 const Usuario = require('../models/usuario');
-const { generarJWT } = require('../helpers/generarJ-jwt');
+const { generarJWT } = require('../helpers/generar-jwt');
 const { googleVerify } = require('../helpers/google-verify');
 
 
